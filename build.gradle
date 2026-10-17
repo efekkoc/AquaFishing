@@ -5,6 +5,12 @@ plugins {
 group = 'me.furkankoc.aquafishing'
 version = '1.0.0-SNAPSHOT'
 
+// Fix for Windows non-ASCII user home paths corrupting Gradle worker classpaths
+boolean isAscii = projectDir.getAbsolutePath().chars().allMatch { it < 128 }
+if (System.getProperty("os.name").toLowerCase().contains("windows") && !isAscii) {
+    layout.buildDirectory.set(file("C:/Users/Public/AquaFishing-build"))
+}
+
 repositories {
     mavenCentral()
     maven {
@@ -15,6 +21,18 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    testImplementation("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+    jvmArgs "-Dfile.encoding=UTF-8", "-Dsun.jnu.encoding=UTF-8"
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 def targetJavaVersion = 21
