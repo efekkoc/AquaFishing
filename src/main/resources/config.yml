@@ -1,0 +1,599 @@
+# AquaFishing - Modern Balıkçılık Turnuvası ve Özel Balık Konfigürasyonu
+# Renkler için Paper Adventure MiniMessage formatı desteklenir: <green>, <yellow>, <gradient:#color1:#color2>, <b> vb.
+
+settings:
+  # Turnuva varsayılan süresi (saniye cinsinden, 300 = 5 dakika)
+  default-duration-seconds: 300
+  # Otomatik turnuva sistemi
+  auto-contest:
+    enabled: true
+    interval-seconds: 3600 # 60 dakikada bir
+    min-players: 1
+  # BossBar ayarları
+  bossbar:
+    enabled: true
+    title: "<gradient:#00c6ff:#0072ff><b>BALIK TURNUVASI</b></gradient> <dark_gray>| <gray>Süre: <yellow>{time} <dark_gray>| <gray>Lider: <aqua>{leader} <gray>(<white>{weight} kg<gray>)"
+    color: "BLUE" # BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
+    style: "PROGRESS" # PROGRESS, NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20
+
+messages:
+  prefix: "<gradient:#00c6ff:#0072ff><b>AquaFishing</b></gradient> <dark_gray>» <gray>"
+  contest-start: "<newline><gold>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<newline>  <gradient:#00c6ff:#0072ff><b>BALIKÇILIK TURNUVASI BAŞLADI!</b></gradient><newline>  <gray>En ağır balığı tutan ilk 3 kişi ödüllendirilecek!<newline>  <gray>Turnuva Süresi: <yellow>{duration}<newline><gold>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<newline>"
+  contest-end: "<newline><gold>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<newline>  <gradient:#00c6ff:#0072ff><b>BALIKÇILIK TURNUVASI SONA ERDİ!</b></gradient><newline>{winners}<newline><gold>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<newline>"
+  contest-no-winners: "  <red>Hiç kimse turnuva süresince balık tutamadı!"
+  winner-format: "  <yellow>#{rank} <white>{player} <dark_gray>- <aqua>{fish} <gray>(<yellow>{weight} kg<gray>)"
+  new-first-place: "{prefix}<yellow><b>{player}</b> <gray>yeni bir rekor kırdı! <aqua>{fish} <gray>(<white>{weight} kg<gray>) ile <green>1. sıraya <gray>yerleşti!"
+  fish-caught: "{prefix}Tuttuğun balık: {rarity} <b>{fish}</b> <gray>(Ağırlık: <yellow>{weight} kg<gray>)"
+  contest-not-active: "{prefix}<red>Şu anda aktif bir balık turnuvası yok."
+  contest-already-active: "{prefix}<red>Zaten devam eden bir turnuva var! Kalan süre: <yellow>{time}"
+  no-permission: "{prefix}<red>Bu komutu kullanmak için yetkiniz yok!"
+  reload-success: "{prefix}<green>Konfigürasyon dosyaları başarıyla yenilendi!"
+
+rewards:
+  1:
+    commands:
+      - "give {player} gold_ingot 64"
+      - "tellraw {player} {\"text\":\"§6[Turnuva Ödülü] §a1. olduğun için 64 Altın Külçesi kazandın!\"}"
+  2:
+    commands:
+      - "give {player} gold_ingot 32"
+      - "tellraw {player} {\"text\":\"§6[Turnuva Ödülü] §a2. olduğun için 32 Altın Külçesi kazandın!\"}"
+  3:
+    commands:
+      - "give {player} gold_ingot 16"
+      - "tellraw {player} {\"text\":\"§6[Turnuva Ödülü] §a3. olduğun için 16 Altın Külçesi kazandın!\"}"
+
+# Gelişmiş Özel Oltalar (10 Kademeli RPG Nitelikleri ve Özel Dokular)
+custom-rods:
+  cirak:
+    name: "<gray>Çırak Tahta Oltası</gray>"
+    tier: 1
+    custom-model-data: 1000
+    power: 1
+    speed: 1.0
+    luck: 1.0
+    bite-reduction: 0
+    price-gold: 0
+    required-catches: 0
+    lore:
+      - "<gray>Yeni başlayan balıkçılar için meşe ağacı olta."
+      - "<dark_gray>Kademe I - Temel Olta"
+
+  bambu:
+    name: "<green>Bambu Nehir Oltası</green>"
+    tier: 2
+    previous-rod: "cirak"
+    custom-model-data: 2000
+    power: 2
+    speed: 1.15
+    luck: 1.2
+    bite-reduction: 30
+    price-gold: 16
+    required-catches: 5
+    lore:
+      - "<green>Hafif ve esnek bambu gövde ile çevik sarma."
+      - "<dark_gray>Kademe II - Nehir Avcısı"
+
+  demir:
+    name: "<aqua>Takviyeli Demir Olta</aqua>"
+    tier: 3
+    previous-rod: "bambu"
+    custom-model-data: 3000
+    power: 3
+    speed: 1.3
+    luck: 1.4
+    bite-reduction: 60
+    price-gold: 48
+    required-catches: 15
+    lore:
+      - "<aqua>Çelik alaşımlı halkalar ve sağlam metalik makara."
+      - "<dark_gray>Kademe III - Demirci Usta Oltası"
+
+  kiziltas:
+    name: "<red>Kızıltaş Mekanik Olta</red>"
+    tier: 4
+    previous-rod: "demir"
+    custom-model-data: 4000
+    power: 4
+    speed: 1.5
+    luck: 1.7
+    bite-reduction: 90
+    price-gold: 120
+    required-catches: 30
+    lore:
+      - "<red>Dişli çarklar ve kızıltaş mekanizmasıyla hızlı sarma."
+      - "<dark_gray>Kademe IV - Mekanik Hızlı Çekim"
+
+  altin:
+    name: "<yellow>Saf Altın Bereket Oltası</yellow>"
+    tier: 5
+    previous-rod: "kiziltas"
+    custom-model-data: 5000
+    power: 5
+    speed: 1.7
+    luck: 2.1
+    bite-reduction: 120
+    price-gold: 256
+    required-catches: 50
+    lore:
+      - "<yellow>Parıldayan altın kaplama ile nadir balık şansı."
+      - "<dark_gray>Kademe V - Altın Sarma Makinesi"
+
+  ametist:
+    name: "<light_purple>Derin Deniz Ametist Oltası</light_purple>"
+    tier: 6
+    previous-rod: "altin"
+    custom-model-data: 6000
+    power: 6
+    speed: 1.9
+    luck: 2.5
+    bite-reduction: 150
+    price-gold: 450
+    required-catches: 75
+    lore:
+      - "<light_purple>Mor kristal gövdesi derinlerdeki gizemli balıkları çeker."
+      - "<dark_gray>Kademe VI - Ametist Rezonansı"
+
+  prizmarin:
+    name: "<gradient:#00c6ff:#0072ff><b>Prizmarin Okyanus Oltası</b></gradient>"
+    tier: 7
+    previous-rod: "ametist"
+    custom-model-data: 7000
+    power: 7
+    speed: 2.1
+    luck: 3.0
+    bite-reduction: 180
+    price-gold: 750
+    required-catches: 110
+    lore:
+      - "<aqua>Tapınak prizmarini ve parlayan deniz feneri ucu."
+      - "<dark_gray>Kademe VII - Okyanus Muhafızı"
+
+  elmas:
+    name: "<gradient:#00ffff:#7000ff><b>Usta Elmas Olta</b></gradient>"
+    tier: 8
+    previous-rod: "prizmarin"
+    custom-model-data: 8000
+    power: 8
+    speed: 2.3
+    luck: 3.6
+    bite-reduction: 210
+    price-gold: 1200
+    required-catches: 160
+    lore:
+      - "<gradient:#00ffff:#7000ff>Kırılmaz elmas kaplama ve dev yırtıcı direnci.</gradient>"
+      - "<dark_gray>Kademe VIII - Usta Balıkçı"
+
+  netherite:
+    name: "<gradient:#ff4500:#8b0000><b>Netherite Magma Oltası</b></gradient>"
+    tier: 9
+    previous-rod: "elmas"
+    custom-model-data: 9000
+    power: 9
+    speed: 2.6
+    luck: 4.3
+    bite-reduction: 240
+    price-gold: 2000
+    required-catches: 220
+    lore:
+      - "<gradient:#ff4500:#8b0000>Lavlara dayanıklı antik zırh ve alev saçan misina.</gradient>"
+      - "<dark_gray>Kademe IX - Cehennem Avcısı"
+
+  melon_kadim:
+    name: "<gradient:#ffe259:#ffa751><b>Melon Kadim Ejder Oltası</b></gradient>"
+    tier: 10
+    previous-rod: "netherite"
+    custom-model-data: 10000
+    power: 11
+    speed: 3.0
+    luck: 5.5
+    bite-reduction: 270
+    price-gold: 3500
+    required-catches: 300
+    lore:
+      - "<gradient:#ffe259:#ffa751>★ EFSANEVİ MELON KADİM EJDER OLTASI ★</gradient>"
+      - "<yellow>Devasa yeşil bar (%75!) ve anında ısırma gücü!"
+      - "<dark_purple>Kademe X - Mitolojik Zirve Oltası"
+
+# Özel Balık Türleri ve Ağırlık Havuzu (40 Çeşit Balık)
+fish-types:
+  morina:
+    name: "Morina"
+    material: "COD"
+    custom-model-data: 10001
+    rarity: "COMMON"
+    min-weight: 2.0
+    max-weight: 7.0
+    lore:
+      - "<gray>Soğuk denizlerin klasik, iri yapılı morinası."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  somon:
+    name: "Somon"
+    material: "COD"
+    custom-model-data: 10002
+    rarity: "COMMON"
+    min-weight: 1.5
+    max-weight: 5.5
+    lore:
+      - "<gray>Nehir akıntılarına karşı yüzen lezzetli pembe somon."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  balon_baligi:
+    name: "Balon Balığı"
+    material: "COD"
+    custom-model-data: 10003
+    rarity: "COMMON"
+    min-weight: 0.5
+    max-weight: 3.0
+    lore:
+      - "<gray>Tehlike hissettiğinde kendini şişiren dikenli balık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  tropikal_balik:
+    name: "Tropikal Balık"
+    material: "COD"
+    custom-model-data: 10004
+    rarity: "COMMON"
+    min-weight: 0.3
+    max-weight: 2.0
+    lore:
+      - "<gray>Mercan resiflerinde süzülen rengarenk egzotik balık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  yayin_baligi:
+    name: "Yayın Balığı"
+    material: "COD"
+    custom-model-data: 10005
+    rarity: "RARE"
+    min-weight: 8.0
+    max-weight: 25.0
+    lore:
+      - "<gray>Nehir diplerinde pusu kuran bıyıklı dev yayın balığı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  turna_baligi:
+    name: "Turna Balığı"
+    material: "COD"
+    custom-model-data: 10006
+    rarity: "RARE"
+    min-weight: 4.0
+    max-weight: 14.0
+    lore:
+      - "<gray>Keskin dişleri ve hızlı saldırılarıyla ünlü tatlı su avcısı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  sardalya:
+    name: "Sardalya"
+    material: "COD"
+    custom-model-data: 10007
+    rarity: "COMMON"
+    min-weight: 0.2
+    max-weight: 1.2
+    lore:
+      - "<gray>Gümüş rengi pullarıyla parıldayan küçük sürü balığı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  koi_baligi:
+    name: "Koi Balığı"
+    material: "COD"
+    custom-model-data: 10008
+    rarity: "RARE"
+    min-weight: 2.0
+    max-weight: 8.0
+    lore:
+      - "<gray>Şans ve bereket getirdiğine inanılan kırmızı-beyaz desenli koi."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  alabalik:
+    name: "Alabalık"
+    material: "COD"
+    custom-model-data: 10009
+    rarity: "COMMON"
+    min-weight: 1.0
+    max-weight: 4.5
+    lore:
+      - "<gray>Buz gibi berrak dağ derelerinde yaşayan benekli alabalık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  pilic_baligi:
+    name: "Piliç Balığı"
+    material: "COD"
+    custom-model-data: 10010
+    rarity: "COMMON"
+    min-weight: 1.2
+    max-weight: 5.0
+    lore:
+      - "<gray>Kumlu diplerde yassı gövdesiyle gizlenen lezzetli dip balığı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  kilic_baligi:
+    name: "Kılıç Balığı"
+    material: "COD"
+    custom-model-data: 10011
+    rarity: "EPIC"
+    min-weight: 15.0
+    max-weight: 45.0
+    lore:
+      - "<gray>Mızrak gibi burnuyla okyanusta jet hızıyla yüzen efsane avcı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  pirana:
+    name: "Pirana"
+    material: "COD"
+    custom-model-data: 10012
+    rarity: "RARE"
+    min-weight: 0.5
+    max-weight: 2.5
+    lore:
+      - "<gray>Amazon sularının jilet gibi dişlere sahip vahşi yırtıcısı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  fener_baligi:
+    name: "Fener Balığı"
+    material: "COD"
+    custom-model-data: 10013
+    rarity: "EPIC"
+    min-weight: 6.0
+    max-weight: 18.0
+    lore:
+      - "<gray>Karanlık okyanus diplerinde ışığıyla avını büyüleyen derin deniz canavarı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  yilan_baligi:
+    name: "Yılan Balığı"
+    material: "COD"
+    custom-model-data: 10014
+    rarity: "RARE"
+    min-weight: 2.0
+    max-weight: 9.0
+    lore:
+      - "<gray>Kıvrılarak yüzen, yakalaması son derece zor kaygan bir av."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  deniz_ati:
+    name: "Deniz Atı"
+    material: "COD"
+    custom-model-data: 10015
+    rarity: "RARE"
+    min-weight: 0.2
+    max-weight: 1.0
+    lore:
+      - "<gray>Deniz çayırlarına kuyruğuyla tutunan minik ve zarif deniz atı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  vatoz:
+    name: "Vatoz"
+    material: "COD"
+    custom-model-data: 10016
+    rarity: "RARE"
+    min-weight: 5.0
+    max-weight: 22.0
+    lore:
+      - "<gray>Okyanus tabanında kanat çırpar gibi süzülen elektrik mavisi vatoz."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  altin_sazan:
+    name: "Altın Sazan"
+    material: "COD"
+    custom-model-data: 10017
+    rarity: "LEGENDARY"
+    min-weight: 10.0
+    max-weight: 35.0
+    lore:
+      - "<gray>Güneş gibi parlayan altın aurasıyla bolluk saçan efsanevi sazan."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  lav_baligi:
+    name: "Lav Balığı"
+    material: "COD"
+    custom-model-data: 10018
+    rarity: "LEGENDARY"
+    min-weight: 12.0
+    max-weight: 40.0
+    lore:
+      - "<gray>Volkanik magma kraterlerinde yaşayan, derisi alev alev yanan balık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  ejder_balik:
+    name: "Ejder Balık"
+    material: "COD"
+    custom-model-data: 10019
+    rarity: "LEGENDARY"
+    min-weight: 15.0
+    max-weight: 50.0
+    lore:
+      - "<gray>Mor kozmik parıltılar saçan, kadim ejderha soyundan gelen mitolojik yaratık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  cerrah_baligi:
+    name: "Cerrah Balığı"
+    material: "COD"
+    custom-model-data: 10020
+    rarity: "COMMON"
+    min-weight: 0.8
+    max-weight: 3.2
+    lore:
+      - "<gray>Koyu mavi gövdesi ve sarı kuyruğuyla resiflerin neşesi."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  kaplan_baligi:
+    name: "Kaplan Balığı"
+    material: "COD"
+    custom-model-data: 10021
+    rarity: "RARE"
+    min-weight: 4.0
+    max-weight: 15.0
+    lore:
+      - "<gray>Kaplan çizgili zırhı ve yırtıcı gücüyle nehirlerin hükümdarı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  isik_baligi:
+    name: "Işık Balığı"
+    material: "COD"
+    custom-model-data: 10022
+    rarity: "LEGENDARY"
+    min-weight: 5.0
+    max-weight: 20.0
+    lore:
+      - "<gray>Derinlerde etrafına neon mor ışık hüzmeleri yayan mucizevi varlık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  aksulot:
+    name: "Aksulot"
+    material: "COD"
+    custom-model-data: 10023
+    rarity: "EPIC"
+    min-weight: 1.0
+    max-weight: 4.0
+    lore:
+      - "<gray>Yeraltı göllerinde gülümseyen sevimli ve nadide amfibi dost."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  kopek_baligi:
+    name: "Köpek Balığı"
+    material: "COD"
+    custom-model-data: 10024
+    rarity: "LEGENDARY"
+    min-weight: 30.0
+    max-weight: 120.0
+    lore:
+      - "<gray>Okyanusların korkulu rüyası, devasa dişlere sahip tepe avcı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  aslan_baligi:
+    name: "Aslan Balığı"
+    material: "COD"
+    custom-model-data: 10025
+    rarity: "EPIC"
+    min-weight: 2.0
+    max-weight: 7.5
+    lore:
+      - "<gray>Göz alıcı yelpaze yüzgeçleri ve zehirli iğneleriyle gösterişli av."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  orkinos:
+    name: "Orkinos"
+    material: "COD"
+    custom-model-data: 10026
+    rarity: "EPIC"
+    min-weight: 25.0
+    max-weight: 90.0
+    lore:
+      - "<gray>Derin denizlerin saf kas gücüyle dolu en değerli ton balığı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  iskender_baligi:
+    name: "İskender Balığı"
+    material: "COD"
+    custom-model-data: 10027
+    rarity: "RARE"
+    min-weight: 3.0
+    max-weight: 11.0
+    lore:
+      - "<gray>Gümüşi zırhı ve asil duruşuyla bilinen lezzetli av."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  ucan_balik:
+    name: "Uçan Balık"
+    material: "COD"
+    custom-model-data: 10028
+    rarity: "RARE"
+    min-weight: 0.5
+    max-weight: 2.2
+    lore:
+      - "<gray>Dalgaların üzerinden metrelerce havalanıp süzülen kanatlı balık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  zirhli_balik:
+    name: "Zırhlı Balık"
+    material: "COD"
+    custom-model-data: 10029
+    rarity: "EPIC"
+    min-weight: 8.0
+    max-weight: 30.0
+    lore:
+      - "<gray>Taş gibi sert plakalarla kaplı tarih öncesinden kalma canlı fosil."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  dev_murekkep:
+    name: "Dev Mürekkep"
+    material: "COD"
+    custom-model-data: 10030
+    rarity: "LEGENDARY"
+    min-weight: 40.0
+    max-weight: 150.0
+    lore:
+      - "<gray>Gemi batıran dev dokunaçlara sahip okyanus derinliklerinin krakeni."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  buz_baligi:
+    name: "Buz Balığı"
+    material: "COD"
+    custom-model-data: 10031
+    rarity: "EPIC"
+    min-weight: 2.5
+    max-weight: 9.0
+    lore:
+      - "<gray>Kutup buzullarının altında yaşayan, şeffaf kristal donmuş balık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  yildiz_baligi:
+    name: "Yıldız Balığı"
+    material: "COD"
+    custom-model-data: 10032
+    rarity: "LEGENDARY"
+    min-weight: 1.0
+    max-weight: 5.0
+    lore:
+      - "<gray>Gökyüzündeki takımyıldızlar gibi ışıldayan sihirli yıldız balığı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  balgam_baligi:
+    name: "Balgam Balığı"
+    material: "COD"
+    custom-model-data: 10033
+    rarity: "LEGENDARY"
+    min-weight: 6.0
+    max-weight: 24.0
+    lore:
+      - "<gray>Radyoaktif yeşil slime aurası yayan, akışkan ve gizemli bir yaratık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  hayalet_balik:
+    name: "Hayalet Balık"
+    material: "COD"
+    custom-model-data: 10034
+    rarity: "EPIC"
+    min-weight: 3.0
+    max-weight: 12.0
+    lore:
+      - "<gray>Suların arasından bir ruh gibi süzülen mavi ışıklı hayalet balık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  kutsal_balik:
+    name: "Kutsal Balık"
+    material: "COD"
+    custom-model-data: 10035
+    rarity: "LEGENDARY"
+    min-weight: 8.0
+    max-weight: 32.0
+    lore:
+      - "<gray>Kırmızı pullarıyla antik tapınaklarda korunan kutsal ejder balığı (Arowana)."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  devasa_balik:
+    name: "Devasa Balık"
+    material: "COD"
+    custom-model-data: 10036
+    rarity: "LEGENDARY"
+    min-weight: 50.0
+    max-weight: 200.0
+    lore:
+      - "<gray>Oltayı kıracak güçte asılan, okyanusun en ağır devi."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  palyaco_baligi:
+    name: "Palyaço Balığı"
+    material: "COD"
+    custom-model-data: 10037
+    rarity: "COMMON"
+    min-weight: 0.3
+    max-weight: 1.8
+    lore:
+      - "<gray>Anemonların arasında saklanan turuncu-beyaz çizgili sevimli balık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  deniz_anasi:
+    name: "Deniz Anası"
+    material: "COD"
+    custom-model-data: 10038
+    rarity: "EPIC"
+    min-weight: 1.5
+    max-weight: 6.0
+    lore:
+      - "<gray>Pembe fosforlu kubbesiyle akıntıda dans eden hipnotize edici deniz anası."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  kalkan_baligi:
+    name: "Kalkan Balığı"
+    material: "COD"
+    custom-model-data: 10039
+    rarity: "COMMON"
+    min-weight: 3.0
+    max-weight: 12.0
+    lore:
+      - "<gray>Deniz tabanında kendini mükemmel kamufle eden yuvarlak kalkan balığı."
+      - "<dark_gray>AquaFishing Turnuva Balığı"
+  merlin:
+    name: "Merlin"
+    material: "COD"
+    custom-model-data: 10040
+    rarity: "EPIC"
+    min-weight: 20.0
+    max-weight: 70.0
+    lore:
+      - "<gray>Okyanusun mavi şimşeği, devasa yelken yüzgeçli kral balık."
+      - "<dark_gray>AquaFishing Turnuva Balığı"

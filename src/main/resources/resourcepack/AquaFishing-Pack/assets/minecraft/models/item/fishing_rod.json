@@ -1,0 +1,144 @@
+{
+  "parent": "minecraft:item/handheld_rod",
+  "textures": {
+    "layer0": "minecraft:item/fishing_rod"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cast": 1
+      },
+      "model": "minecraft:item/fishing_rod_cast"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1000
+      },
+      "model": "aquafishing:item/rod_cirak"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1000,
+        "cast": 1
+      },
+      "model": "aquafishing:item/rod_cirak"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2000
+      },
+      "model": "aquafishing:item/rod_bambu"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2000,
+        "cast": 1
+      },
+      "model": "aquafishing:item/rod_bambu"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3000
+      },
+      "model": "aquafishing:item/rod_demir"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3000,
+        "cast": 1
+      },
+      "model": "aquafishing:item/rod_demir"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4000
+      },
+      "model": "aquafishing:item/rod_kiziltas"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4000,
+        "cast": 1
+      },
+      "model": "aquafishing:item/rod_kiziltas"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 5000
+      },
+      "model": "aquafishing:item/rod_altin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 5000,
+        "cast": 1
+      },
+      "model": "aquafishing:item/rod_altin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 6000
+      },
+      "model": "aquafishing:item/rod_ametist"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 6000,
+        "cast": 1
+      },
+      "model": "aquafishing:item/rod_ametist"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7000
+      },
+      "model": "aquafishing:item/rod_prizmarin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7000,
+        "cast": 1
+      },
+      "model": "aquafishing:item/rod_prizmarin"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 8000
+      },
+      "model": "aquafishing:item/rod_elmas"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 8000,
+        "cast": 1
+      },
+      "model": "aquafishing:item/rod_elmas"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 9000
+      },
+      "model": "aquafishing:item/rod_netherite"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 9000,
+        "cast": 1
+      },
+      "model": "aquafishing:item/rod_netherite"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10000
+      },
+      "model": "aquafishing:item/rod_melon_kadim"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10000,
+        "cast": 1
+      },
+      "model": "aquafishing:item/rod_melon_kadim"
+    }
+  ]
+}

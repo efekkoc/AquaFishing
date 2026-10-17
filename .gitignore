@@ -1,0 +1,16 @@
+.gradle/
+build/
+run/
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+.vscode/
+bin/
+.DS_Store
+test-server/
+*.log
+debug_*.png
+hud_*.png
+fishing_minigame_widget.png

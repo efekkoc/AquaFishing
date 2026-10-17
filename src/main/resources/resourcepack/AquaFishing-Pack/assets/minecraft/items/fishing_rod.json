@@ -1,0 +1,166 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:fishing_rod/cast",
+    "on_true": {
+      "type": "minecraft:range_dispatch",
+      "property": "minecraft:custom_model_data",
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/fishing_rod_cast"
+      },
+      "entries": [
+        {
+          "threshold": 1000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_cirak"
+          }
+        },
+        {
+          "threshold": 2000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_bambu"
+          }
+        },
+        {
+          "threshold": 3000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_demir"
+          }
+        },
+        {
+          "threshold": 4000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_kiziltas"
+          }
+        },
+        {
+          "threshold": 5000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_altin"
+          }
+        },
+        {
+          "threshold": 6000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_ametist"
+          }
+        },
+        {
+          "threshold": 7000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_prizmarin"
+          }
+        },
+        {
+          "threshold": 8000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_elmas"
+          }
+        },
+        {
+          "threshold": 9000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_netherite"
+          }
+        },
+        {
+          "threshold": 10000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_melon_kadim"
+          }
+        }
+      ]
+    },
+    "on_false": {
+      "type": "minecraft:range_dispatch",
+      "property": "minecraft:custom_model_data",
+      "fallback": {
+        "type": "minecraft:model",
+        "model": "minecraft:item/fishing_rod"
+      },
+      "entries": [
+        {
+          "threshold": 1000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_cirak"
+          }
+        },
+        {
+          "threshold": 2000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_bambu"
+          }
+        },
+        {
+          "threshold": 3000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_demir"
+          }
+        },
+        {
+          "threshold": 4000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_kiziltas"
+          }
+        },
+        {
+          "threshold": 5000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_altin"
+          }
+        },
+        {
+          "threshold": 6000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_ametist"
+          }
+        },
+        {
+          "threshold": 7000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_prizmarin"
+          }
+        },
+        {
+          "threshold": 8000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_elmas"
+          }
+        },
+        {
+          "threshold": 9000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_netherite"
+          }
+        },
+        {
+          "threshold": 10000,
+          "model": {
+            "type": "minecraft:model",
+            "model": "aquafishing:item/rod_melon_kadim"
+          }
+        }
+      ]
+    }
+  }
+}

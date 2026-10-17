@@ -1,0 +1,24 @@
+name: AquaFishing
+version: '${version}'
+main: me.furkankoc.aquafishing.AquaFishing
+api-version: '1.21'
+author: FurkanKoc
+description: Gelişmiş Balıkçılık Turnuvası ve Özel Balık Eklentisi
+
+commands:
+  fish:
+    description: AquaFishing ana komutu
+    permission: aquafishing.use
+    aliases:
+      - balik
+      - turnuva
+      - fishing
+    usage: /fish <start|stop|top|help|reload>
+
+permissions:
+  aquafishing.use:
+    description: Balık tutma turnuvası komutlarını görüntüleme yetkisi
+    default: true
+  aquafishing.admin:
+    description: Turnuva başlatma, durdurma ve ayarları yenileme yetkisi
+    default: op

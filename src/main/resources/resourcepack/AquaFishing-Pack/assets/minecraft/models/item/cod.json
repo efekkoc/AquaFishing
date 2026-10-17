@@ -1,0 +1,248 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/cod"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 10001
+      },
+      "model": "aquafishing:item/fish_morina"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10002
+      },
+      "model": "aquafishing:item/fish_somon"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10003
+      },
+      "model": "aquafishing:item/fish_balon_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10004
+      },
+      "model": "aquafishing:item/fish_tropikal_balik"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10005
+      },
+      "model": "aquafishing:item/fish_yayin_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10006
+      },
+      "model": "aquafishing:item/fish_turna_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10007
+      },
+      "model": "aquafishing:item/fish_sardalya"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10008
+      },
+      "model": "aquafishing:item/fish_koi_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10009
+      },
+      "model": "aquafishing:item/fish_alabalik"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10010
+      },
+      "model": "aquafishing:item/fish_pilic_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10011
+      },
+      "model": "aquafishing:item/fish_kilic_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10012
+      },
+      "model": "aquafishing:item/fish_pirana"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10013
+      },
+      "model": "aquafishing:item/fish_fener_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10014
+      },
+      "model": "aquafishing:item/fish_yilan_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10015
+      },
+      "model": "aquafishing:item/fish_deniz_ati"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10016
+      },
+      "model": "aquafishing:item/fish_vatoz"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10017
+      },
+      "model": "aquafishing:item/fish_altin_sazan"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10018
+      },
+      "model": "aquafishing:item/fish_lav_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10019
+      },
+      "model": "aquafishing:item/fish_ejder_balik"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10020
+      },
+      "model": "aquafishing:item/fish_cerrah_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10021
+      },
+      "model": "aquafishing:item/fish_kaplan_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10022
+      },
+      "model": "aquafishing:item/fish_isik_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10023
+      },
+      "model": "aquafishing:item/fish_aksulot"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10024
+      },
+      "model": "aquafishing:item/fish_kopek_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10025
+      },
+      "model": "aquafishing:item/fish_aslan_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10026
+      },
+      "model": "aquafishing:item/fish_orkinos"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10027
+      },
+      "model": "aquafishing:item/fish_iskender_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10028
+      },
+      "model": "aquafishing:item/fish_ucan_balik"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10029
+      },
+      "model": "aquafishing:item/fish_zirhli_balik"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10030
+      },
+      "model": "aquafishing:item/fish_dev_murekkep"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10031
+      },
+      "model": "aquafishing:item/fish_buz_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10032
+      },
+      "model": "aquafishing:item/fish_yildiz_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10033
+      },
+      "model": "aquafishing:item/fish_balgam_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10034
+      },
+      "model": "aquafishing:item/fish_hayalet_balik"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10035
+      },
+      "model": "aquafishing:item/fish_kutsal_balik"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10036
+      },
+      "model": "aquafishing:item/fish_devasa_balik"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10037
+      },
+      "model": "aquafishing:item/fish_palyaco_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10038
+      },
+      "model": "aquafishing:item/fish_deniz_anasi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10039
+      },
+      "model": "aquafishing:item/fish_kalkan_baligi"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10040
+      },
+      "model": "aquafishing:item/fish_merlin"
+    }
+  ]
+}
