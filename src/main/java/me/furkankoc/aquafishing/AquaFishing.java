@@ -63,7 +63,7 @@ public final class AquaFishing extends JavaPlugin {
             contestManager.shutdown();
         }
         if (codexManager != null) {
-            codexManager.saveAll();
+            codexManager.shutdown();
         }
         if (packServer != null) {
             packServer.stop();

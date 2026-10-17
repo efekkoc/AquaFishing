@@ -1,37 +1,36 @@
 package me.furkankoc.aquafishing.codex;
 
 import me.furkankoc.aquafishing.AquaFishing;
+import me.furkankoc.aquafishing.database.CodexRepository;
+import me.furkankoc.aquafishing.database.DatabaseFactory;
 import me.furkankoc.aquafishing.fish.CaughtFish;
 import me.furkankoc.aquafishing.util.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Level;
 
+/**
+ * High-level manager responsible for tracking player discoveries and coordinating persistence
+ * through the underlying CodexRepository (SQLite or YAML).
+ */
 public class CodexManager {
 
     private final AquaFishing plugin;
-    private final File dataFolder;
+    private final CodexRepository repository;
     private final Map<UUID, PlayerCodex> cache = new ConcurrentHashMap<>();
 
     public CodexManager(AquaFishing plugin) {
         this.plugin = plugin;
-        this.dataFolder = new File(plugin.getDataFolder(), "playerdata");
-        if (!dataFolder.exists()) {
-            dataFolder.mkdirs();
-        }
+        String storageType = plugin.getConfig().getString("settings.database.type", "SQLITE");
+        this.repository = DatabaseFactory.createRepository(plugin, storageType);
     }
 
     public PlayerCodex getCodex(UUID uuid) {
-        return cache.computeIfAbsent(uuid, this::loadFromDisk);
+        return cache.computeIfAbsent(uuid, repository::load);
     }
 
     public void recordCatch(Player player, CaughtFish fish) {
@@ -48,54 +47,31 @@ public class CodexManager {
         saveToDiskAsync(codex);
     }
 
-    private PlayerCodex loadFromDisk(UUID uuid) {
-        PlayerCodex codex = new PlayerCodex(uuid);
-        File file = new File(dataFolder, uuid + ".yml");
-        if (!file.exists()) {
-            return codex;
-        }
-
-        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
-        ConfigurationSection sec = yaml.getConfigurationSection("discoveries");
-        if (sec == null) return codex;
-
-        for (String fishId : sec.getKeys(false)) {
-            int count = sec.getInt(fishId + ".count", 1);
-            double maxWeight = sec.getDouble(fishId + ".max-weight", 1.0);
-            long firstTime = sec.getLong(fishId + ".first-time", System.currentTimeMillis());
-
-            PlayerFishProgress progress = new PlayerFishProgress(count, maxWeight, firstTime);
-            codex.addLoadedProgress(fishId, progress);
-        }
-
-        return codex;
-    }
-
     private void saveToDiskAsync(PlayerCodex codex) {
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> saveToDisk(codex));
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> repository.save(codex));
     }
 
     public void saveToDisk(PlayerCodex codex) {
-        File file = new File(dataFolder, codex.getPlayerUuid() + ".yml");
-        YamlConfiguration yaml = new YamlConfiguration();
+        repository.save(codex);
+    }
 
-        for (Map.Entry<String, PlayerFishProgress> entry : codex.getDiscoveries().entrySet()) {
-            String path = "discoveries." + entry.getKey();
-            yaml.set(path + ".count", entry.getValue().getCatchCount());
-            yaml.set(path + ".max-weight", entry.getValue().getMaxWeight());
-            yaml.set(path + ".first-time", entry.getValue().getFirstDiscoveredMillis());
-        }
-
-        try {
-            yaml.save(file);
-        } catch (IOException e) {
-            plugin.getLogger().log(Level.SEVERE, "Oyuncu defter verisi kaydedilemedi: " + codex.getPlayerUuid(), e);
+    public void unloadPlayer(UUID uuid) {
+        PlayerCodex codex = cache.remove(uuid);
+        if (codex != null) {
+            repository.save(codex);
         }
     }
 
     public void saveAll() {
-        for (PlayerCodex codex : cache.values()) {
-            saveToDisk(codex);
-        }
+        repository.saveAll(cache.values());
+    }
+
+    public void shutdown() {
+        saveAll();
+        repository.close();
+    }
+
+    public CodexRepository getRepository() {
+        return repository;
     }
 }

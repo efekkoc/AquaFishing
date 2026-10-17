@@ -28,5 +28,6 @@ public class PlayerConnectionListener implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
         plugin.getContestManager().onPlayerQuit(event.getPlayer());
         plugin.getMinigameManager().cancelSession(event.getPlayer());
+        plugin.getCodexManager().unloadPlayer(event.getPlayer().getUniqueId());
     }
 }

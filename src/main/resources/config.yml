@@ -15,6 +15,9 @@ settings:
     title: "<gradient:#00c6ff:#0072ff><b>BALIK TURNUVASI</b></gradient> <dark_gray>| <gray>Süre: <yellow>{time} <dark_gray>| <gray>Lider: <aqua>{leader} <gray>(<white>{weight} kg<gray>)"
     color: "BLUE" # BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
     style: "PROGRESS" # PROGRESS, NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20
+  # Veritabanı ve Kalıcı Kayıt Seçeneği (SQLITE veya YAML)
+  database:
+    type: "SQLITE" # Seçenekler: SQLITE, YAML
 
 messages:
   prefix: "<gradient:#00c6ff:#0072ff><b>AquaFishing</b></gradient> <dark_gray>» <gray>"
