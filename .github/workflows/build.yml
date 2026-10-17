@@ -1,0 +1,39 @@
+name: AquaFishing CI / CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build & Verify (Java 21)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Make Gradlew Executable
+        run: chmod +x ./gradlew
+
+      - name: Compile and Run Unit Tests
+        run: ./gradlew test --no-daemon
+
+      - name: Build Plugin JAR
+        run: ./gradlew build --no-daemon
+
+      - name: Archive Production JAR Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AquaFishing-Production-JAR
+          path: build/libs/AquaFishing-*.jar
+          retention-days: 14
